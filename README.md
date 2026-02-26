@@ -1,3 +1,7 @@
+<img width="1431" height="507" alt="image" src="https://github.com/user-attachments/assets/0cb10b45-8a5a-46ed-8f68-1e707b0dac4b" />
+
+
+
 # 🛰 OpenAudit Brasil
 
 Infraestrutura aberta para análise e cruzamento de dados públicos.
