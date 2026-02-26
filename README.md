@@ -1,10 +1,10 @@
-🛰 OpenAudit Brasil
+# 🛰 OpenAudit Brasil
 
 Infraestrutura aberta para análise e cruzamento de dados públicos.
 
 ---
 
-📌 Sobre
+## 📌 Sobre
 
 A OpenAudit Brasil é uma organização open source dedicada ao desenvolvimento de ferramentas para análise estruturada de dados públicos.
 
@@ -20,7 +20,7 @@ Fornecemos ferramentas técnicas para análise de dados públicos.
 
 ---
 
-🎯 Objetivo
+## 🎯 Objetivo
 
 Construir um ecossistema comunitário de ferramentas OSINT que:
 
@@ -34,7 +34,7 @@ A legitimidade do projeto vem da transparência do código, não da autoridade d
 
 ---
 
-⚙️ Princípios Técnicos
+## ⚙️ Princípios Técnicos
 
 	1.	Somente dados públicos
 		• Nenhum dado protegido, vazado ou obtido ilegalmente é permitido.
@@ -52,7 +52,7 @@ A legitimidade do projeto vem da transparência do código, não da autoridade d
 
 ---
 
-🏗 Arquitetura (Diretrizes)
+## 🏗 Arquitetura (Diretrizes)
 
 A organização será estruturada em múltiplos repositórios:
 
@@ -71,7 +71,7 @@ Design orientado a:
 
 ---
 
-🛡 Mitigação de Riscos
+## 🛡 Mitigação de Riscos
 
 Para reduzir riscos jurídicos e operacionais:
 
@@ -87,7 +87,7 @@ A organização pertence à comunidade.
 
 ---
 
-📜 Manifesto
+## 📜 Manifesto
 
 Dados públicos pertencem à sociedade.
 Ferramentas de análise devem ser transparentes.
@@ -98,7 +98,7 @@ Acreditamos que tecnologia pode ampliar a capacidade da sociedade de compreender
 
 ---
 
-🤝 Como Contribuir
+## 🤝 Como Contribuir
 
 	1.	Leia o manifesto
 	2.	Abra uma issue discutindo proposta
@@ -113,7 +113,7 @@ Contribuições devem seguir:
 
 ---
 
-⚖️ Aviso Legal
+## ⚖️ Aviso Legal
 
 Este projeto:
 
@@ -126,7 +126,7 @@ Os resultados gerados são hipóteses analíticas que exigem validação manual.
 
 ---
 
-🚀 Próximos Passos
+## 🚀 Próximos Passos
 
 	•	Definir padrão de schema unificado
 	•	Criar primeiro conector oficial
