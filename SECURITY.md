@@ -1,4 +1,4 @@
-# SECURITY
+# SEGURANÇA
 
 <img width="1431" height="507" alt="image" src="/assets/logo-full.png" />
 
