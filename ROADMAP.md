@@ -271,6 +271,146 @@ O endpoint `/analyze` deve retornar um relatório com **seções fixas**, inclui
 }
 ```
 
+A seguir estão os trechos **prontos** para adicionar no ROADMAP (ou na especificação do `/analyze`) incluindo:
+
+* `ai_findings` (no corpo do relatório)
+* `audit.ai[]` (na trilha de auditoria)
+
+Você pode copiar/colar exatamente como está.
+
+---
+
+## 5.3 `ai_findings[]` — Achados assistidos por IA (hipóteses)
+
+> `ai_findings` **não** é “verdade”, “prova” ou “acusação”.
+> É uma lista de **hipóteses técnicas** geradas por agentes plugáveis, sempre com **referência explícita às evidências** presentes no relatório (`facts`, `indicators`, `sources`).
+
+### Campos obrigatórios
+
+Cada item em `ai_findings[]` deve conter:
+
+* `finding_id` (string, único no run)
+* `title` (string curta)
+* `description` (string; linguagem neutra, técnica)
+* `confidence` (`low|medium|high`)
+* `evidence_refs[]` (array de referências para evidências no relatório)
+* `limitations[]` (array de strings)
+* `alt_hypotheses[]` (array de strings)
+* `consensus` (agregação multi-agente)
+* `agent_refs[]` (quais agentes contribuíram)
+
+### Exemplo
+
+```json
+{
+  "finding_id": "AI_ANOMALY_001",
+  "title": "Variação atípica em valores no período",
+  "description": "Foi identificado um desvio robusto (MAD/IQR) em valores agregados em comparação com períodos adjacentes. Este achado é uma hipótese técnica e pode ser explicado por atraso de atualização, mudança de schema ou reprocessamento oficial.",
+  "confidence": "medium",
+  "evidence_refs": [
+    "/indicators/2",
+    "/facts/expenses/monthly/2024-08",
+    "/sources/1"
+  ],
+  "limitations": [
+    "Cobertura temporal incompleta em uma das fontes",
+    "Possível mudança de schema no período analisado"
+  ],
+  "alt_hypotheses": [
+    "Atraso na atualização do portal",
+    "Reclassificação administrativa do gasto",
+    "Reprocessamento retroativo"
+  ],
+  "consensus": {
+    "count": 2,
+    "agents": ["consistency-agent", "anomaly-hypothesis-agent"]
+  },
+  "agent_refs": [
+    { "agent_id": "consistency-agent", "run_ref": "/audit/ai/0" },
+    { "agent_id": "anomaly-hypothesis-agent", "run_ref": "/audit/ai/1" }
+  ]
+}
+```
+
+### Regras obrigatórias
+
+* `evidence_refs[]` deve apontar somente para caminhos existentes no JSON (ex.: JSON Pointer).
+* O texto **não pode** usar linguagem acusatória.
+* O achado **não pode** introduzir fatos novos fora das evidências referenciadas.
+
+---
+
+## 5.4 `audit.ai[]` — Auditoria de execução dos agentes
+
+> `audit.ai[]` registra **como** e **com quais parâmetros** cada agente rodou, garantindo rastreabilidade e controle de risco.
+
+### Campos obrigatórios por item
+
+* `agent_id`
+* `agent_version`
+* `provider` (ex.: local|remote|custom)
+* `model_id`
+* `model_version`
+* `prompt_version`
+* `policy_version`
+* `input_hash` (sha256 do payload sanitizado entregue ao agente)
+* `output_hash` (sha256 da saída bruta do agente)
+* `duration_ms`
+* `status` (`success|timeout|error|skipped`)
+* `nondeterministic` (boolean)
+* `budget` (limites de custo/tempo/tokens, quando aplicável)
+* `notes` (opcional, sem PII)
+
+### Exemplo
+
+```json
+{
+  "audit": {
+    "ai": [
+      {
+        "agent_id": "consistency-agent",
+        "agent_version": "1.0.0",
+        "provider": "local",
+        "model_id": "llm-local",
+        "model_version": "2026-02-01",
+        "prompt_version": "3",
+        "policy_version": "2",
+        "input_hash": "sha256:aaa...",
+        "output_hash": "sha256:bbb...",
+        "duration_ms": 842,
+        "status": "success",
+        "nondeterministic": false,
+        "budget": { "timeout_ms": 3000, "max_tokens": 1200 },
+        "notes": "input sanitizado (sem PII)"
+      },
+      {
+        "agent_id": "anomaly-hypothesis-agent",
+        "agent_version": "1.0.0",
+        "provider": "remote",
+        "model_id": "gpt-x",
+        "model_version": "2026-02-15",
+        "prompt_version": "5",
+        "policy_version": "2",
+        "input_hash": "sha256:ccc...",
+        "output_hash": "sha256:ddd...",
+        "duration_ms": 1660,
+        "status": "success",
+        "nondeterministic": true,
+        "budget": { "timeout_ms": 8000, "max_tokens": 1800 },
+        "notes": "variação possível; output preservado como artefato do run"
+      }
+    ]
+  }
+}
+```
+
+### Regras obrigatórias
+
+* `input_hash` e `output_hash` sempre presentes (mesmo em erro/timeout, quando possível).
+* `nondeterministic=true` quando usar modelos não determinísticos ou parâmetros não fixos.
+* Logs associados à IA devem ser **sem PII** por padrão.
+
+
 ---
 
 ## 6) Diagrama de Sequência (Mermaid)
