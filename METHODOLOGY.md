@@ -1,4 +1,4 @@
-# METHODOLOGY.md
+# METODOLOGIA
 
 ## OpenAudit Brasil — Metodologia (v1.0.0) 27-02-2026
 
