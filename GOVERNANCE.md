@@ -1,4 +1,4 @@
-# GOVERNANCE
+# GOVERNANÇA
 
 ## OpenAudit Brasil — Governança do Projeto (v1.0.0) 27-02-2026
 
