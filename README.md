@@ -1,119 +1,161 @@
-<img width="1431" height="507" alt="image" src="https://github.com/user-attachments/assets/0cb10b45-8a5a-46ed-8f68-1e707b0dac4b" />
-
-
-
 # 🛰 OpenAudit Brasil
 
-Infraestrutura aberta para análise e cruzamento de dados públicos.
+<img width="1431" height="507" alt="Logo OpenAudit Brasil" src="/assets/logo-full.png" />
+
+Infraestrutura aberta para **análise responsável**, **reprodutível** e **auditável** de dados públicos.
+
+---
+
+## 📚 Documentação (índice)
+
+- **Fundamentos**
+  - [Manifesto](./MANIFESTO.md)
+  - [Metodologia](./METHODOLOGY.md)
+  - [Política de Risco](./RISK_POLICY.md)
+  - [Governança](./GOVERNANCE.md)
+  - [Código de Conduta](./CODE_OF_CONDUCT.md)
+  - [Segurança](./SECURITY.md)
+  - [Registro de Decisões](./DECISIONS.md)
+
+- **Contribuição**
+  - [Como contribuir](./CONTRIBUTING.md) *(se existir)*
+  - [Licença](./LICENSE) *(se existir)*
+  - [Roadmap](./ROADMAP.md)
+
+
+- **Fontes de Dados**
+  - [Dados](./DATA_SOURCES.md)
 
 ---
 
 ## 📌 Sobre
 
-A OpenAudit Brasil é uma organização open source dedicada ao desenvolvimento de ferramentas para análise estruturada de dados públicos.
+A OpenAudit Brasil é uma iniciativa open source dedicada a construir um **ecossistema técnico** para:
 
-Nosso foco é criar infraestrutura técnica que permita:
+- **Cruzamento de bases públicas** (múltiplas fontes oficiais)
+- **Detecção de padrões atípicos** e **inconsistências estruturais**
+- **Geração de hipóteses analíticas** para verificação humana
+- **Rastreabilidade total**: fonte → transformação → indicador → explicação
+- **Explicabilidade**: cada resultado precisa responder “por quê” e “como”
 
-	•	Cruzamento de bases abertas
-	•	Identificação de padrões estatísticos e anomalias
-	•	Geração de hipóteses para investigação manual
-	•	Transparência e auditabilidade do processo
-
-Não realizamos acusações, julgamentos ou afirmações categóricas.
-Fornecemos ferramentas técnicas para análise de dados públicos.
+O projeto **não realiza acusações**, **não emite juízo moral** e **não substitui autoridades**.  
+O output do sistema é **indicador técnico**, acompanhado de limitações e risco de falso positivo.
 
 ---
 
-## 🎯 Objetivo
+## 🎯 Missão
 
-Construir um ecossistema comunitário de ferramentas OSINT que:
+Construir infraestrutura aberta para que qualquer pessoa possa:
 
-	•	Seja totalmente open source
-	•	Rode localmente (offline-first sempre que possível)
-	•	Tenha governança distribuída
-	•	Seja tecnicamente auditável
-	•	Minimize riscos de censura ou centralização
+- **auditar metodologia** (código e regras),
+- **reproduzir resultados** (mesmos inputs → mesmos outputs),
+- e **entender limitações** (incerteza, viés, falsos positivos),
 
-A legitimidade do projeto vem da transparência do código, não da autoridade de indivíduos.
+sem depender de plataformas fechadas, interesses institucionais ou serviços centralizados.
+
+---
+
+## 🧠 O que o OpenAudit Brasil é (e não é)
+
+### ✅ É
+- Infraestrutura técnica para **análise estruturada** de dados públicos
+- Framework para **indicadores auditáveis** (anomalia, divergência, inconsistência)
+- Pipeline orientado a **qualidade de dados**, **proveniência** e **reprodutibilidade**
+- Projeto **neutro**, com governança e política de risco explícitas
+
+### ❌ Não é
+- Ferramenta para “expor” indivíduos
+- Sistema de “ranking” acusatório
+- Mecanismo de denúncia automatizada
+- Órgão investigativo, jurídico ou fiscalizador
+
+Esses limites são parte central do projeto e estão detalhados em:
+- [MANIFESTO.md](./MANIFESTO.md)
+- [RISK_POLICY.md](./RISK_POLICY.md)
 
 ---
 
 ## ⚙️ Princípios Técnicos
 
-	1.	Somente dados públicos
-		• Nenhum dado protegido, vazado ou obtido ilegalmente é permitido.
-	2.	Reprodutibilidade
-		• Todo processamento deve ser verificável.
-	3.	Neutralidade
-		• O sistema aponta padrões e inconsistências estatísticas. 
-		• A interpretação é responsabilidade do usuário.
-	4.	Modularidade
-		• Cada conector de base pública é um módulo independente.
-	5.	Execução local prioritária
-		• O projeto deve funcionar sem depender de servidores centrais.
-	6.	Governança aberta
-		• Decisões técnicas via RFC pública.
+1. **Somente dados públicos (de verdade)**
+   - Sem login, sem bypass, sem violação de termos, sem dados obtidos ilegalmente.
+2. **Reprodutibilidade**
+   - Resultados determinísticos e verificáveis.
+3. **Explicabilidade**
+   - Cada indicador tem método, evidência, limitações e hipóteses alternativas.
+4. **Neutralidade**
+   - O sistema aponta padrões; interpretação e contextualização são humanas.
+5. **Modularidade**
+   - Conectores e regras isolados, versionados e auditáveis.
+6. **Offline-first / execução local como padrão**
+   - Minimiza risco de censura, centralização e abuso por infraestrutura única.
+7. **Rastreabilidade (proveniência)**
+   - Tudo precisa ser rastreável: fonte → transformação → output.
+8. **Governança aberta**
+   - Mudanças relevantes passam por processo documentado (RFC/decisões).
 
 ---
 
-## 🏗 Arquitetura (Diretrizes)
+## 🏗 Arquitetura (diretrizes)
 
-A organização será estruturada em múltiplos repositórios:
+A organização tende a se dividir em componentes (pode evoluir com o tempo):
 
-	•	core-engine → motor de análise e cruzamento
-	•	connectors → adaptadores para bases públicas
-	•	schemas → padronização de dados
-	•	risk-models → modelos estatísticos e heurísticas
-	•	docs → documentação técnica e jurídica
+- `core-engine` → motor de pipeline (ingestão, normalização, checks, indicadores)
+- `connectors` → conectores para fontes oficiais (um módulo por fonte)
+- `schemas` → padronização de dados, dicionários e versionamento de schema
+- `risk-models` → indicadores, heurísticas e métodos estatísticos documentados
+- `docs` → documentação técnica, metodológica e política (este repositório pode ser “docs”)
 
-Design orientado a:
-
-	•	Pipeline de dados
-	•	Processamento determinístico
-	•	Logs rastreáveis
-	•	Versionamento de modelos
-
----
-
-## 🛡 Mitigação de Riscos
-
-Para reduzir riscos jurídicos e operacionais:
-
-	•	Nenhuma API central obrigatória
-	•	Execução local como padrão
-	•	Manifesto claro sobre finalidade técnica
-	•	Não associação partidária
-	•	Não monetização inicial
-	•	Licença permissiva
-
-O projeto não tem dono.
-A organização pertence à comunidade.
+O design é orientado a:
+- **pipelines reprodutíveis**
+- **logs rastreáveis sem PII**
+- **versionamento de regras/indicadores**
+- **auditoria de alterações** (DECISIONS/RFC)
 
 ---
 
-## 📜 Manifesto
+## 🛡 Mitigação de Riscos (por design)
 
-Dados públicos pertencem à sociedade.
-Ferramentas de análise devem ser transparentes.
-Centralização cria fragilidade.
-Código aberto cria resiliência.
+O OpenAudit Brasil é construído com controles explícitos para reduzir:
 
-Acreditamos que tecnologia pode ampliar a capacidade da sociedade de compreender dados públicos — de forma responsável, técnica e auditável.
+- **risco jurídico** (difamação, imputação indevida, privacidade)
+- **risco político** (captura ideológica, instrumentalização)
+- **risco técnico** (falso positivo, vieses, dados incompletos)
+- **risco de abuso** (doxxing, targeting, perseguição)
+
+Medidas centrais:
+- execução local como padrão
+- linguagem neutra e vocabulário controlado
+- outputs sempre com disclaimer + explicação
+- proibição de rankings acusatórios
+- gate de revisão para mudanças sensíveis
+
+Detalhes completos:
+- [RISK_POLICY.md](./RISK_POLICY.md)
+- [METHODOLOGY.md](./METHODOLOGY.md)
+- [GOVERNANCE.md](./GOVERNANCE.md)
 
 ---
 
-## 🤝 Como Contribuir
+## 🤝 Como contribuir
 
-	1.	Leia o manifesto
-	2.	Abra uma issue discutindo proposta
-	3.	Submeta PR com testes e documentação
-	4.	Participe das discussões técnicas
+Fluxo recomendado:
 
-Contribuições devem seguir:
+1. Leia:
+   - [MANIFESTO.md](./MANIFESTO.md)
+   - [RISK_POLICY.md](./RISK_POLICY.md)
+   - [METHODOLOGY.md](./METHODOLOGY.md)
+2. Abra uma **issue** com a proposta (contexto, motivação, impacto)
+3. Se for mudança relevante (fonte nova, indicador novo, export, busca sensível):
+   - proponha uma RFC e descreva mitigação de risco
+4. Submeta PR com:
+   - testes (quando aplicável)
+   - documentação do que mudou
+   - justificativa técnica objetiva
+   - atenção a privacidade e linguagem neutra
 
-	•	Código limpo e documentado
-	•	Testes automatizados
-	•	Justificativa técnica clara
+Regras de convivência:
+- [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 
 ---
 
@@ -121,18 +163,27 @@ Contribuições devem seguir:
 
 Este projeto:
 
-	•	Utiliza exclusivamente dados públicos
-	•	Não faz acusações
-	•	Não substitui órgãos de controle
-	•	Não emite juízo de valor
+- utiliza exclusivamente dados públicos conforme critérios documentados
+- não emite acusações, denúncias ou juízos de valor
+- não substitui órgãos de controle, investigação ou justiça
+- gera **indicadores analíticos** sujeitos a limitações e **falsos positivos**
 
-Os resultados gerados são hipóteses analíticas que exigem validação manual.
+Qualquer interpretação além do indicador técnico é responsabilidade do usuário, e deve considerar contexto, qualidade de dados e limitações metodológicas.
 
 ---
 
-## 🚀 Próximos Passos
+## 🚀 Próximos passos (roadmap inicial)
 
-	•	Definir padrão de schema unificado
-	•	Criar primeiro conector oficial
-	•	Implementar pipeline mínimo viável
-	•	Publicar primeira versão reprodutível
+- Definir padrão de schema unificado e dicionário de dados
+- Implementar pipeline mínimo viável (ingest → normalize → quality checks → indicador simples)
+- Criar primeiro conector oficial com documentação e testes
+- Publicar primeira release reprodutível com logs de proveniência
+- Formalizar RFC template e fluxo de DECISIONS
+
+---
+
+## 📬 Contato e comunidade
+
+- Site: https://openauditbrasil.com/
+- GitHub: https://github.com/OpenAudit-Brasil
+- Discord: https://discord.gg/KJAJPWGDBW
