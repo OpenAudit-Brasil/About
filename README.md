@@ -18,8 +18,7 @@ Infraestrutura aberta para **análise responsável**, **reprodutível** e **audi
   - [Registro de Decisões](./DECISIONS.md)
 
 - **Contribuição**
-  - [Como contribuir](./CONTRIBUTING.md) *(se existir)*
-  - [Licença](./LICENSE) *(se existir)*
+  - [Licença](./LICENSE)
   - [Roadmap](./ROADMAP.md)
 
 
