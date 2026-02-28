@@ -1,4 +1,4 @@
-# CODE_OF_CONDUCT
+# CÓDIGO DE CONDUTA
 
 ## OpenAudit Brasil — Código de Conduta (v1.0.0) 27-02-2026
 
