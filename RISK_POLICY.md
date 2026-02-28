@@ -1,4 +1,4 @@
-# RISK_POLICY
+# POLÍTICA DE RISCO
 
 <img width="1431" height="507" alt="image" src="/assets/logo-full.png" />
 
